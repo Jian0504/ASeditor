@@ -21,8 +21,6 @@
             <a href="javascript:;" title="上传图片"><i class="iconfont">&#xe638;</i></a>
             <a href="javascript:;" title="插入代码"><i class="iconfont">&#xe6b9;</i></a>
             <a href="javascript:;" title="查看/预览"><i class="iconfont">&#xe68a;</i></a>
-
-            Dick
         </nav>
     </div>
     <div class="s-body">
@@ -57,13 +55,10 @@
     }
     $(document).on('click','.s-head a',function () {
         $('#ASeditor').focus()
-        alert(1)
         try{
-          //  window.event.returnValue = false;
             window.event.cancelBubble = true;
             return false;
         }catch (e) {
-          //  window.event.preventDefault();
             window.event.stopPropagation()
         }
     })
