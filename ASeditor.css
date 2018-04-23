@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'iconfont';  /* project id 638785 */
+    src: url('//at.alicdn.com/t/font_638785_29a7vln6850fi529.eot');
+    src: url('//at.alicdn.com/t/font_638785_29a7vln6850fi529.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_638785_29a7vln6850fi529.woff') format('woff'),
+    url('//at.alicdn.com/t/font_638785_29a7vln6850fi529.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_638785_29a7vln6850fi529.svg#iconfont') format('svg');
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+*{
+    margin: 0;
+    padding: 0;
+}
+#ASeditor{
+    resize: none;
+    outline: none;
+    height: 100%;
+    width: 97%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 12px;
+    border: 1px;
+
+}
+.seditor{
+    min-height: 100px;
+    border: 1px solid #d8c8c8;
+    width: 80%;
+    margin: 0 auto;
+}
+.s-head{
+    height: 40px;
+    width: 100%;
+    background: #e2e2dd;
+    border-bottom: 1px solid #d1c3c3;
+}
+.s-head a{
+   text-decoration: none;
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    border: 1px solid #e8b7b7;
+    margin-top: 2px;
+    background: #f8f4f4;
+}
+.s-head i{
+    font-size: 25px;
+    position: relative;
+    top: 4px;
+    left: 5px;
+}
+.s-body{
+    height: 500px;
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AS在线MarkDown编辑器</title>
+    <link rel="stylesheet" href="ASeditor.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/default.min.css">
+    <script src="ASeditor.js"></script>
+</head>
+<body>
+<div class="seditor">
+    <div class="s-head">
+        <nav>
+            <a href="javascript:;" title="加粗"><i class="iconfont">&#xe6fe;</i></a>
+            <a href="javascript:;" title="斜体"><i class="iconfont">&#xe627;</i></a>
+            <a href="javascript:;" title="无序列表"><i class="iconfont">&#xe62b;</i></a>
+            <a href="javascript:;" title="有序列表"><i class="iconfont">&#xe67a;</i></a>
+            <a href="javascript:;" title="上传图片"><i class="iconfont">&#xe638;</i></a>
+            <a href="javascript:;" title="插入代码"><i class="iconfont">&#xe6b9;</i></a>
+            <a href="javascript:;" title="查看/预览"><i class="iconfont">&#xe68a;</i></a>
+
+            Dick
+        </nav>
+    </div>
+    <div class="s-body">
+        <textarea contenteditable="true" id="ASeditor" onkeydown="onKeyEditor(this)" spellcheck="false"></textarea>
+    </div>
+</div>
+
+<div id="ASeditorShow"></div>
+<div id="ASeditorShow2"></div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
+<script>
+    function onKeyEditor(e) {
+        if(window.event.keyCode == 9){
+            //IE中阻止函数器默认动作的方式
+            try{
+                window.event.returnValue = false;
+            }catch (e) {
+                window.event.preventDefault();
+            }
+        }
+        if(window.event.keyCode == 13){
+            var txt = $('#ASeditor').val();
+            $('#ASeditorShow').html( marked(txt.replace(/\n/g,"  "+"\r\n")));
+            $('#ASeditorShow').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        }
+    }
+    $(document).on('click','.s-head a',function () {
+
+        try{
+          //  window.event.returnValue = false;
+            window.event.cancelBubble = true;
+            return false;
+        }catch (e) {
+          //  window.event.preventDefault();
+            window.event.stopPropagation()
+        }
+        alert(1234567)
+    })
+</script>
+
