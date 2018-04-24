@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" id="btnInsert">
+<!--<input type="text" id="ASeditorShow">-->
+<textarea name="" id="txtquestion" cols="30" rows="10"></textarea>
+</body>
+
+</html>
+<script src="jquery1.7.2.min.js"></script>
+<script>
+    //jQuery光标处插入文本
+
+    $(document).ready(function () {
+        $("#btnInsert").click(function () {
+            var obj = $("#txtquestion").get(0);
+            var str = "  ";
+            if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+                var startPos = obj.selectionStart;
+                var endPos = obj.selectionEnd;
+                var tmpStr = obj.value;
+                obj.value = tmpStr.substring(0, startPos) + "  " + tmpStr.substring(endPos, tmpStr.length);
+                obj.setSelectionRange(endPos  ,endPos+2)
+                $('#txtquestion').focus()
+            }
+
+        });
+    });
+</script>

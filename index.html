@@ -11,10 +11,17 @@
     <script src="ASeditor.js"></script>
 </head>
 <body>
+<div class="s-help">
+   <ol type="1">
+       <li>加粗  (<span class="red">CTRL + 1  </span>)</li>
+       <li>缩进2空格  (<span class="red">TAB</span>)</li>
+       <li>换行  (<span class="red">ENTER</span>)</li>
+   </ol>
+</div>
 <div class="seditor">
     <div class="s-head">
         <nav>
-            <a href="javascript:;" title="加粗"><i class="iconfont">&#xe6fe;</i></a>
+            <a href="javascript:;" onclick="javascript:ASeditor.xe6fe()" title="加粗"><i class="iconfont">&#xe6fe;</i></a>
             <a href="javascript:;" title="斜体"><i class="iconfont">&#xe627;</i></a>
             <a href="javascript:;" title="无序列表"><i class="iconfont">&#xe62b;</i></a>
             <a href="javascript:;" title="有序列表"><i class="iconfont">&#xe67a;</i></a>
@@ -27,34 +34,59 @@
         <textarea contenteditable="true" id="ASeditor" onkeydown="onKeyEditor(this)" spellcheck="false"></textarea>
     </div>
 </div>
-
 <div id="ASeditorShow"></div>
-<div id="ASeditorShow2"></div>
 </body>
 </html>
 <script src="jquery1.7.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
 <script>
-    function onKeyEditor(e) {
-        if(window.event.keyCode == 9){
-            //IE中阻止函数器默认动作的方式
+    var ASeditor = {};
+
+ASeditor.textarea = "#ASeditor";
+ASeditor.show = "#ASeditorShow";
+
+
+    ASeditor.xe6fe = function () {
+
+    };
+    ASeditor.re = function (j,s) {
+        var obj = $(_this.textarea).get(0)
+        console.log(obj)
+        if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+            var startPos = obj.selectionStart;
+            var endPos = obj.selectionEnd;
+            var tmpStr = obj.value;
+            obj.value = tmpStr.substring(0, startPos) + "  " + tmpStr.substring(endPos, tmpStr.length);
             try{
                 window.event.returnValue = false;
             }catch (e) {
                 window.event.preventDefault();
             }
+            if(j)
+                obj.setSelectionRange(endPos + s ,endPos + s )
+            else {
+                obj.setSelectionRange(endPos - s, endPos - s)
+
+            }
+            $(_this.textarea).focus()
+        }
+    }
+    function onKeyEditor(e) {
+        if(window.event.keyCode == 9){
+            _this.re(true,2)
+            return false
         }
         if(window.event.keyCode == 13){
-            var txt = $('#ASeditor').val();
-            $('#ASeditorShow').html( marked(txt.replace(/\n/g,"  "+"\r\n")));
-            $('#ASeditorShow').each(function(i, block) {
+            var txt = $(ASeditor.textarea).val();
+            $(_this.show).html( marked(txt.replace(/\n/g,"  "+"\r\n")));
+            $(_this.show).each(function(i, block) {
                 hljs.highlightBlock(block);
             });
         }
     }
     $(document).on('click','.s-head a',function () {
-        $('#ASeditor').focus()
+        $(_this.textarea).focus()
         try{
             window.event.cancelBubble = true;
             return false;
@@ -62,5 +94,6 @@
             window.event.stopPropagation()
         }
     })
+    var _this = ASeditor;
 </script>
 
